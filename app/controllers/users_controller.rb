@@ -15,7 +15,10 @@ class UsersController < ApplicationController
     # paramas => users => user.save => if ... else ... end
     @user = User.new(user_params)
     if @user.save
-      # 保存の成功をここで扱う。
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user  # => GET /users/:id
+      # redirect_to user_path(@user) # => GET /users/:id
+      # redirect_to user_path(@user.id) # => GET /users/2
     else
       render 'new', status: :unprocessable_entity
     end
